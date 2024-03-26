@@ -51,6 +51,14 @@ resource "openstack_compute_instance_v2" "vm" {
     port = var.network_port.id
   }
 
+  # Dynamically attach the CephFS network port if it is provided
+  dynamic "network" {
+    for_each = var.cephfs_network_port != null ? [var.cephfs_network_port] : []
+    content {
+      port = network.value.id
+    }
+  }
+
   scheduler_hints {
     group = var.server_group.id
   }

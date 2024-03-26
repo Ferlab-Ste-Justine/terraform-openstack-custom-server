@@ -50,3 +50,9 @@ variable "cloud_init_configurations" {
   }))
   default = []
 }
+
+variable "cephfs_network_port" {
+  description = "CephFS network port to assign to the node. Should be of type openstack_networking_port_v2 or null if not used."
+  type        = any
+  default     = null
+}
