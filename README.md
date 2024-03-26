@@ -15,6 +15,7 @@ It offers a streamlined process for:
 
 - **name**: Name to give to the VM. Used for identification within OpenStack.
 - **network_port**: Network port to assign to the VM. Should be of type `openstack_networking_port_v2`.
+- **cephfs_network_port**: CephFS network port to assign to the node. Should be of type `openstack_networking_port_v2` or null if not used.
 - **server_group**: Server group to assign to the VM. Should be of type `openstack_compute_servergroup_v2`.
 - **image_source**: Source of the VM's image. Provide either an `image_id` (for image-based VMs) or a `volume_id` (for volume-based VMs), but not both. The object structure is:
   - `image_id`: String ID of the image to use.
