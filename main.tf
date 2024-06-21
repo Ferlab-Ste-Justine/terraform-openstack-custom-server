@@ -1,11 +1,21 @@
 locals {
-  block_devices = var.image_source.volume_id != "" ? [{
-    uuid                  = var.image_source.volume_id
-    source_type           = "volume"
-    boot_index            = 0
-    destination_type      = "volume"
-    delete_on_termination = false
-  }] : []
+  block_devices = concat(
+    var.image_source.volume_id != "" ? [{
+      uuid                  = var.image_source.volume_id
+      source_type           = "volume"
+      boot_index            = 0
+      destination_type      = "volume"
+      delete_on_termination = false
+    }] : [],
+    var.data_volume_id != "" ? [{
+      uuid                  = var.data_volume_id
+      source_type           = "volume"
+      boot_index            = -1
+      destination_type      = "volume"
+      delete_on_termination = false
+    }] : []
+  )
+  
   cloudinit_templates = concat([
       {
         filename     = "base.cfg"
@@ -62,15 +72,15 @@ resource "openstack_compute_instance_v2" "vm" {
   scheduler_hints {
     group = var.server_group.id
   }
-  
+
   dynamic "block_device" {
     for_each = local.block_devices
     content {
-      uuid                  = block_device.value["uuid"]
-      source_type           = block_device.value["source_type"]
-      boot_index            = block_device.value["boot_index"]
-      destination_type      = block_device.value["destination_type"]
-      delete_on_termination = block_device.value["delete_on_termination"]
+      uuid                  = block_device.value.uuid
+      source_type           = block_device.value.source_type
+      boot_index            = block_device.value.boot_index
+      destination_type      = block_device.value.destination_type
+      delete_on_termination = block_device.value.delete_on_termination
     }
   }
 
