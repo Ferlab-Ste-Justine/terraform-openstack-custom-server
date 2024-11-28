@@ -43,6 +43,12 @@ variable "keypair_name" {
   type        = string
 }
 
+variable "dns_servers" {
+  description = "List of DNS servers to override the ones from DHCP"
+  type        = list(string)
+  default     = []
+}
+
 variable "install_dependencies" {
   description = "Whether to install all dependencies in cloud-init"
   type        = bool

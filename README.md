@@ -22,6 +22,7 @@ It offers a streamlined process for:
   - `volume_id`: String ID of the volume to use.
 - **flavor_id**: ID of the VM flavor. Specifies the compute, memory, and storage capacity of the VM.
 - **keypair_name**: Name of the keypair used for SSH access to the VM. 
+- **dns_servers**: List of DNS servers to override the ones from DHCP. Defaults to empty so the ones from DHCP are used.
 - **install_dependencies**: Boolean flag to determine whether to install all dependencies in cloud-init. Defaults to `true`.
 - **cloud_init_configurations**: List of additional cloud-init configurations. Each entry should include:
   - `filename`: A unique and descriptive filename for the cloud-init part.

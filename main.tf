@@ -24,6 +24,7 @@ locals {
           "${path.module}/files/user_data.yaml.tpl", 
           {
             hostname = var.name
+            dns_servers = var.dns_servers
             install_dependencies = var.install_dependencies
           }
         )
