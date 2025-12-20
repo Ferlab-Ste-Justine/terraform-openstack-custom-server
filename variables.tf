@@ -9,8 +9,9 @@ variable "network_port" {
 }
 
 variable "server_group" {
-  description = "Server group to assign to the node. Should be of type openstack_compute_servergroup_v2"
+  description = "Server group to assign to the node. Should be of type openstack_compute_servergroup_v2 or null if not used."
   type        = any
+  default     = null
 }
 
 variable "image_source" {

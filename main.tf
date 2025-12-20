@@ -69,8 +69,11 @@ resource "openstack_compute_instance_v2" "vm" {
     }
   }
 
-  scheduler_hints {
-    group = var.server_group.id
+  dynamic "scheduler_hints" {
+    for_each = var.server_group != null ? [var.server_group] : []
+    content {
+      group = scheduler_hints.value.id
+    }
   }
 
   dynamic "block_device" {
