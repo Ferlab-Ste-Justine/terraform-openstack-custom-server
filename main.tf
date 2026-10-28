@@ -52,6 +52,7 @@ data "template_cloudinit_config" "user_data" {
 
 resource "openstack_compute_instance_v2" "vm" {
   name            = var.name
+  power_state     = var.power_state
   image_id        = var.image_source.image_id != "" ? var.image_source.image_id : null
   flavor_id       = var.flavor_id
   key_pair        = var.keypair_name

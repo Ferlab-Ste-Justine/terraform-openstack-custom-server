@@ -3,6 +3,12 @@ variable "name" {
   type        = string
 }
 
+variable "power_state" {
+  description = "State of the vm. Should be active, shutoff or shelved_offloaded"
+  type        = string
+  default     = "active"
+}
+
 variable "network_port" {
   description = "Network port to assign to the node. Should be of type openstack_networking_port_v2"
   type        = any

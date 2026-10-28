@@ -14,6 +14,7 @@ It offers a streamlined process for:
 ## Input Variables
 
 - **name**: Name to give to the VM. Used for identification within OpenStack.
+- **power_state**: State of the vm. Should be `active`, `shutoff` or `shelved_offloaded`. Defaults to `active`.
 - **network_port**: Network port to assign to the VM. Should be of type `openstack_networking_port_v2`.
 - **cephfs_network_port**: CephFS network port to assign to the node. Should be of type `openstack_networking_port_v2` or null if not used.
 - **server_group**: Server group to assign to the VM. Should be of type `openstack_compute_servergroup_v2` or null if not used.
